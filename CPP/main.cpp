@@ -3,6 +3,16 @@
 
 using namespace std;
 
+bool keep(int step, int position) {
+    if (step == 0) {
+        return position % 2 == 1;
+    }
+    if (step == 1) {
+        return position % 2 == 0;
+    }
+    return position % 3 != 0;
+}
+
 int main() {
     int n;
     cin >> n;
@@ -19,19 +29,7 @@ int main() {
         int newSize = 0;
         for (int i = 0; i < size; i++) {
             int position = i + 1;
-            bool removed = false;
-
-            if (step == 0 && position % 2 == 0) {
-                removed = true;
-            }
-            if (step == 1 && position % 2 == 1) {
-                removed = true;
-            }
-            if (step == 2 && position % 3 == 0) {
-                removed = true;
-            }
-
-            if (!removed) {
+            if (keep(step, position)) {
                 a[newSize] = a[i];
                 newSize++;
             }
