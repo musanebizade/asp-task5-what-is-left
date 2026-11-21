@@ -23,6 +23,16 @@ int main() {
     }
     size = newSize;
 
+    newSize = 0;
+    for (int i = 0; i < size; i++) {
+        int position = i + 1;
+        if (position % 2 == 0) {
+            a[newSize] = a[i];
+            newSize++;
+        }
+    }
+    size = newSize;
+
     for (int i = 0; i < size; i++) {
         cout << a[i] << " ";
     }
