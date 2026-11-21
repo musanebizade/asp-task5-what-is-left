@@ -38,9 +38,6 @@ int main() {
         step = (step + 1) % 3;
     }
 
-    for (int i = 0; i < size; i++) {
-        cout << a[i] << " ";
-    }
-    cout << endl;
+       cout << a[0] << endl;
     return 0;
 }
