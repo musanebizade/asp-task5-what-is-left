@@ -13,25 +13,32 @@ int main() {
     }
 
     int size = n;
-    int newSize = 0;
-    for (int i = 0; i < size; i++) {
-        int position = i + 1;
-        if (position % 2 == 1) {
-            a[newSize] = a[i];
-            newSize++;
-        }
-    }
-    size = newSize;
+    int step = 0;
 
-    newSize = 0;
-    for (int i = 0; i < size; i++) {
-        int position = i + 1;
-        if (position % 2 == 0) {
-            a[newSize] = a[i];
-            newSize++;
+    while (size > 1) {
+        int newSize = 0;
+        for (int i = 0; i < size; i++) {
+            int position = i + 1;
+            bool removed = false;
+
+            if (step == 0 && position % 2 == 0) {
+                removed = true;
+            }
+            if (step == 1 && position % 2 == 1) {
+                removed = true;
+            }
+            if (step == 2 && position % 3 == 0) {
+                removed = true;
+            }
+
+            if (!removed) {
+                a[newSize] = a[i];
+                newSize++;
+            }
         }
+        size = newSize;
+        step = (step + 1) % 3;
     }
-    size = newSize;
 
     for (int i = 0; i < size; i++) {
         cout << a[i] << " ";
