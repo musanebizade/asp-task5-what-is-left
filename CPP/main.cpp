@@ -12,7 +12,18 @@ int main() {
         a[i] = i + 1;
     }
 
-    for (int i = 0; i < n; i++) {
+    int size = n;
+    int newSize = 0;
+    for (int i = 0; i < size; i++) {
+        int position = i + 1;
+        if (position % 2 == 1) {
+            a[newSize] = a[i];
+            newSize++;
+        }
+    }
+    size = newSize;
+
+    for (int i = 0; i < size; i++) {
         cout << a[i] << " ";
     }
     cout << endl;
