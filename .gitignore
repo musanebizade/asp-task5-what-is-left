@@ -1,0 +1,5 @@
+CPP/main
+CPP/main.exe
+Haskell/main
+Haskell/*.o
+Haskell/*.hi
