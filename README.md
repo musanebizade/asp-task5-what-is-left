@@ -28,22 +28,21 @@ Since the array loses at least a third of its elements every three moves, the to
 
 ## Haskell solution
 
-The three moves are functions on lists:
+Each move is a function on lists. Every element is paired with its position using `zip [1 ..]`. Then `filter` keeps the pairs whose position satisfies the rule of the move, and `map snd` drops the positions again:
 
-- `keepOdd` keeps the elements at odd positions
-- `keepEven` keeps the elements at even positions
-- `skipThird` removes every third element
+- `keepOdd` keeps positions 1, 3, 5, ...
+- `keepEven` keeps positions 2, 4, 6, ...
+- `skipThird` keeps positions that are not divisible by 3
 
-`solve` takes the infinite list `cycle [keepOdd, keepEven, skipThird]` and applies one move at a time until the list has exactly one element. No variables or loops are used, only recursion and pattern matching.
+`solve` takes the infinite list `cycle [keepOdd, keepEven, skipThird]` and applies one move at a time until the list has exactly one element. No variables or loops are used.
 
-Haskell lists are lazy, so the numbers from `[1 .. n]` are produced and consumed one by one. The full list of 10^8 numbers is never stored in memory, which is why the memory usage stays very small.
 
 ## Results on e-Olymp
 
 | Language | Score | Time | Memory |
 |---|---|---|---|
 | C++ | 100 / 100 | 521 ms | 382.4 MB |
-| Haskell | 100 / 100 | 2183 ms | 4.5 MB |
+| Haskell | 97 / 100 | 5000 ms | 4.5 MB |
 
 C++ needs more memory because it keeps the whole array of n integers. Haskell is slower per element because of the lazy list overhead, but it uses almost no memory.
 
